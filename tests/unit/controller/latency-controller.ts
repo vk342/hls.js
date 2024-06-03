@@ -182,6 +182,21 @@ describe('LatencyController', function () {
       expect(latencyController.targetLatency).to.equal(6.5);
     });
 
+    it('liveSyncOnStallIncrease can control how fast targetduration increases on stall', function () {
+      latencyController['config'].lowLatencyMode = true;
+      latencyController['config'].liveSyncOnStallIncrease = 1.3;
+      levelDetails.targetduration = 3.5;
+      levelDetails.partHoldBack = 3;
+      levelDetails.age = 0;
+      expect(latencyController.targetLatency).to.equal(3);
+      latencyController['stallCount'] = 1;
+      expect(latencyController.targetLatency).to.equal(4.3);
+      latencyController['stallCount'] += 1;
+      expect(latencyController.targetLatency).to.equal(5.6);
+      latencyController['stallCount'] += 1;
+      expect(latencyController.targetLatency).to.equal(6.5);
+    });
+
     it('can be set and will reset stallCount', function () {
       latencyController['config'].lowLatencyMode = true;
       levelDetails.targetduration = 3.5;
