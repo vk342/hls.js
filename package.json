@@ -47,7 +47,7 @@
     "prettier": "prettier --cache --write .",
     "prettier:verify": "prettier --cache --check .",
     "pretest": "npm run lint",
-    "sanity-check": "npm run lint && npm run prettier:verify && npm run type-check && npm run build && es-check && npm run docs && npm run test:unit",
+    "sanity-check": "rm -rf api-extractor/api-documenter && npm run lint && npm run prettier:verify && npm run type-check && npm run build && es-check && npm run docs && npm run test:unit",
     "start": "npm run dev",
     "test": "npm run test:unit && npm run test:func",
     "test:unit": "karma start karma.conf.js",
